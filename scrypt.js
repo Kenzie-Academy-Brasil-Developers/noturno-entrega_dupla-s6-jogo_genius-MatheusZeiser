@@ -81,6 +81,7 @@ function acenderCor(number = 0) {
             acenderCor(i);
         }
     }, 750);
+    
 };
 function acendeRed() {
     redButton.classList.add('selected');
@@ -144,11 +145,11 @@ function ganhouGame(){
 }
 function verificaErro(){
     for (i = 0; i < sequenciaClique.length; i++) {
-        if (sequenciaCores.length > 0) {
             if (sequenciaClique[i] !== sequenciaCores[i]) {
+                startButton.disabled = true;
                 hiddenGame();
             }
-        }
+        
     }
 }
 function hiddenGame(){
@@ -170,21 +171,67 @@ function resetgame() {
     newRound();
 
 }
+
+function disable(bolean){
+redButton.disabled = bolean;
+blueButton.disabled = bolean;
+yellowButton.disabled = bolean;
+greenButton.disabled = bolean;
+}
+
+function buttonON(){
+    redButton.classList.remove("off");
+    blueButton.classList.remove("off");
+    yellowButton.classList.remove("off");
+    greenButton.classList.remove("off");
+}
+
+function buttonOFF(){
+    redButton.classList.add("off");
+    blueButton.classList.add("off");
+    yellowButton.classList.add("off");
+    greenButton.classList.add("off");
+    startButton.disabled = true;
+}
+
 function newRound(){
+    startButton.disabled = true;
     sequenciaClique = [];
     RandomColor();
+    disable(true);
+    buttonOFF();
 
+    
     setTimeout(() => {
         startText.innerText = "Round " + round;
     }, 750);
 
+
+    setTimeout(() => {
+        startText.innerText = "Sua Vez";
+    }, (2000 + round * 750  ) );
+
     setTimeout(() => {
         acenderCor();
     }, 2000);
-    startButton.disabled = true;
+
+
+   
+
+    setTimeout(() => {
+        disable(false);
+        buttonON();
+        
+    }, (2000 + 750 * round) );
+
+    
+    
 }
-startButton.addEventListener("click", () => {
+
+startButton.addEventListener("click",  () => {
     newRound();
+   
+
 })
 redButton.addEventListener("click", () => {
 
@@ -255,5 +302,7 @@ playAgain.addEventListener("click", () => {
     colorButtons.classList.remove("Hidden");
     game.classList.remove("perdeu");
     divYouWin.classList.add("Hidden");
+
+    startButton.disabled = true;
 });
 

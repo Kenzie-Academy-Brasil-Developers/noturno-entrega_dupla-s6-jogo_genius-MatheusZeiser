@@ -43,6 +43,11 @@ margin-left: 10px;
 #colorButtons{
     display: flex;
     flex-wrap: wrap;
+
+}
+.off:hover{
+    cursor: not-allowed;
+
 }
 .green{
     background-color: rgb(4, 228, 4);
@@ -87,6 +92,8 @@ margin-left: 10px;
 .selected{
     box-shadow: 2px 3px 52px -14px rgba(0, 0, 0, 0.582) inset;
 }
+
+
 #centerArea{
     display: flex;
     justify-content: center;
