@@ -146,7 +146,6 @@ function verificaErro(){
     for (i = 0; i < sequenciaClique.length; i++) {
         if (sequenciaCores.length > 0) {
             if (sequenciaClique[i] !== sequenciaCores[i]) {
-                startButton.disabled = true;
                 hiddenGame();
             }
         }
@@ -171,7 +170,7 @@ function resetgame() {
     newRound();
 
 }
-startButton.addEventListener("click", newRound = () => {
+function newRound(){
     sequenciaClique = [];
     RandomColor();
 
@@ -182,6 +181,10 @@ startButton.addEventListener("click", newRound = () => {
     setTimeout(() => {
         acenderCor();
     }, 2000);
+    startButton.disabled = true;
+}
+startButton.addEventListener("click", () => {
+    newRound();
 })
 redButton.addEventListener("click", () => {
 
@@ -252,7 +255,5 @@ playAgain.addEventListener("click", () => {
     colorButtons.classList.remove("Hidden");
     game.classList.remove("perdeu");
     divYouWin.classList.add("Hidden");
-
-    startButton.disabled = true;
 });
 
